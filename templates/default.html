@@ -33,25 +33,35 @@
     </nav>
 
     <!-- body -->
-    <div class="wrapper" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #ffffff;">
-        <div class="container" style="width: 60vw; min-height: 80vh; background-color: rgb(240, 242, 242); border-radius: 2em; position: relative;">
-            <div class="inner-wrapper" style="border: 0px solid black;padding: 5px;margin: 15px;margin-inline: 5px; overflow: scroll;max-height: 80vh;">
-                {# for food in foods #}
-                    <div class="card" style="border-radius: 1em; margin-bottom: 10px;">
-                        <!-- <img src="{{ food.image }}" class="card-img-top" alt="..."> -->
-                        <div class="card-body">
-                            <h5 class="card-title">birayani{{ food.name }}</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate sed laborum neque sequi aliquam quis facere consequatur, consectetur quae molestias veritatis corrupti ea minus blanditiis numquam officia esse necessitatibus architecto!{{ food.description }}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="wrapper container" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #ffffff;">
+        <div class="row gap-3">
+            <div class="container col-9" style="width: 60vw; min-height: 80vh; background-color: rgb(240, 242, 242); border-radius: 2em; position: relative;">
+                <div class="inner-wrapper" style="border: 0px solid black;padding: 5px;margin: 15px;margin-inline: 5px; overflow: scroll;max-height: 80vh;">
+                    {# for food in foods #}
+                        <div class="card" style="border-radius: 1em; margin-bottom: 10px;">
+                            <!-- <img src="{{ food.image }}" class="card-img-top" alt="..."> -->
+                            <div class="card-body">
+                                <h5 class="card-title">birayani{{ food.name }}</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate sed laborum neque sequi aliquam quis facere consequatur, consectetur quae molestias veritatis corrupti ea minus blanditiis numquam officia esse necessitatibus architecto!{{ food.description }}</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
                         </div>
-                    </div>
-                {# endfor #}
+                    {# endfor #}
+                </div>
+            </div>
+            <div class="card col-3" style="width: 8rem; margin-right: 5em; height: fit-content; align-self: center;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                  <h4 class="card-title">User 1</h4>
+                  <p class="card-subtitle">Loged In</p>
+                  <a href="#" class="btn btn-danger mt-4">Logout</a>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <div class="container">
+    <!-- <div class="container"> -->
         <footer class="py-3 my-4">
           <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
@@ -62,7 +72,7 @@
           </ul>
           <p class="text-center text-muted">Made with 💖 by Nihad, Saad, Rami, Nazir</p>
         </footer>
-    </div>
+    <!-- </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
