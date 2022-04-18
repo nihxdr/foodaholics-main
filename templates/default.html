@@ -2,18 +2,29 @@
 
 {% block content %}
 
-                <div class="d-flex">
-                    <form action="accounts/login">
-                        <button class="btn btn-outline-success" type="submit">Login</button>
-                    </form>
+                <div class="d-flex align-items-center">
+                    <!-- <a class="btn btn-outline-success" href="{% url 'login' %}">Login</a> -->
+                    {% if user.is_authenticated %}
+                        <a href="" class="mx-2" style="width: 2em; background-color: #fff;">
+                            <img src="https://img.icons8.com/ios-glyphs/30/000000/person-male.png"/>
+                        </a>
+                        <a class="text-white me-2" style="text-decoration: none; width: fit-content;">Hi {{ user.username }}!</a>
+                        <!-- <span style="width: 38px; display: flex; align-items: center; justify-content: center;">
+                            <span style="width: 40px; margin-right: 1em; border-radius: 50%; background-color: #fff;">
+                                
+                            </span>
+                        </span> -->
+                        <a class="btn btn-danger" href="{% url 'logout' %}" style="height: fit-content;">Log Out</a>
+                    {% else %}
+                        <a class="btn btn-outline-success" href="{% url 'login' %}">Log In</a>
+                        <!-- <a class="btn btn-warning ms-2" href="{% url 'register' %}" style="height: fit-content;">Register</a> -->
+                    {% endif %}
                     
                     <!-- <form action="logout">
                     <button class="btn btn-outline-danger ms-2" type="submit">Logout</button>
                     </form> -->
                 
-                    <form action="accounts/register">
-                        <button class="btn btn-warning ms-2" type="submit">Register</button>
-                    </form>
+                    <a class="btn btn-warning ms-2" href="{% url 'register' %}" style="height: fit-content;">Register</a>
                 </div>
             </div>
         </div>
@@ -22,16 +33,32 @@
     <!-- body -->
     <div class="wrapper container" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #ffffff;">
         <div class="row gap-3 justify-content-center">
-        <h2 class="badge bg-danger fs-3" style="width: 40vw;">Recommendations</h2>
+        <h2 class="badge bg-danger fs-3" style="margin-top: 5px; width: 40vw;">Recommendations</h2>
         <div class="container col-9" style="width: 60vw; min-height: 80vh; background-color: rgb(240, 242, 242); border-radius: 2em; position: relative;">
             <div class="inner-wrapper" style="border: 0px solid black;padding: 5px;margin: 15px;margin-inline: 5px; overflow: scroll;max-height: 80vh;">
                 {# for food in foods #}
                     <div class="card shadow" style="border-radius: 1em; margin-bottom: 10px;">
-                        <!-- <img src="{{ food.image }}" class="card-img-top" alt="..."> -->
                         <div class="card-body">
-                            <h5 class="card-title">birayani{{ food.name }}</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate sed laborum neque sequi aliquam quis facere consequatur, consectetur quae molestias veritatis corrupti ea minus blanditiis numquam officia esse necessitatibus architecto!{{ food.tag }}</p>
-                            <span style="display: inline-block; text-align: right; width: 100% ;">
+                            <h4 class="card-title text-danger">arriba   baked winter squash mexican style{{ food.name }}</h5>
+                            <h6>Description</h6>
+                            <p class="card-text">autumn is my favorite time of year to cook! this recipe 
+                                can be prepared either spicy or sweet, your choice!
+                                two of my posted mexican-inspired seasoning mix recipes are offered as suggestions.{{ food.tag }}</p>
+                            <h6>Tags</h6>
+                            <p>'60-minutes-or-less', 'time-to-make', 'course', 'main-ingredient', 'cuisine', 'preparation', 'occasion', 'north-american', 'side-dishes', 'vegetables', 'mexican', 'easy', 'fall', 'holiday-event', 'vegetarian', 'winter', 'dietary', 'christmas', 'seasonal', 'squash'</p>
+                            <h6>Ingredients</h6>
+                            <p>'winter squash', 'mexican seasoning', 'mixed spice', 'honey', 'butter', 'olive oil', 'salt'</p>
+
+                            <span style="display: inline-block; text-align: right; width: 100% ; margin: 2px;">
+                                <span>
+                                    <span class="btn btn-outline-dark">
+                                        <span class="fa fa-star checked" id="poor"></span>
+                                        <span class="fa fa-star checked" id="bad"></span>
+                                        <span class="fa fa-star checked" id="avg"></span>
+                                        <span class="fa fa-star" id="good"></span>
+                                        <span class="fa fa-star" id="exclnt"></span>
+                                    </span>
+                                </span>
                                 <a href="#" class="btn btn-success"><svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px" style="margin-right: .5em;"><path d="M 6.0097656 2 C 4.9143111 2 4.0097656 2.9025988 4.0097656 3.9980469 L 4 22 L 12 19 L 20 22 L 20 20.556641 L 20 4 C 20 2.9069372 19.093063 2 18 2 L 6.0097656 2 z M 6.0097656 4 L 18 4 L 18 19.113281 L 12 16.863281 L 6.0019531 19.113281 L 6.0097656 4 z"/></svg>Bookmark</a>
                             </span>
                         </div>
@@ -39,7 +66,37 @@
                 {# endfor #}
             </div>
         </div>
-        
+
+        <!-- scripts -->
+        <script>
+            const poor = document.getElementById('poor');
+            const bad = document.getElementById('bad');
+            const avg = document.getElementById('avg');
+            const good = document.getElementById('good');
+            const exclnt = document.getElementById('exclnt');
+            stars = [poor, bad, avg, good, exclnt];
+    
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].addEventListener('click', function() {
+                    for (let j = 0; j < stars.length; j++) {
+                        stars[j].classList.remove('checked');
+                    }
+                    for (let k = 0; k <= i; k++) {
+                        stars[k].classList.add('checked');
+                    }
+                });
+            }
+          </script>
+
+        <!-- scripts -->
+      <!-- <script> -->
+    <!-- //        const star = document.getElementsByClassName('fa-star');
+    //
+    //        star.addEventListener('click', function(e) {
+    //            e.target.classList.toggle('checked')
+    //        }); -->
+      <!-- </script> -->
+
         <!-- <div class="card col-3" style="width: 8rem; margin-right: 5em; height: fit-content; align-self: center;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
